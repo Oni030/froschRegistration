@@ -5,50 +5,82 @@
     <title>FroschRegistrierungsServiceGesellschaft mbH</title>
 
     <script>
-        alert ('Willkommen!');
+        function delayElement(elementId, delay) {
+            setTimeout(function () {
+                document.getElementById(elementId).style.display = 'block';
+            }, delay);
+        }
+
+        window.onload = function () {
+            delayElement('header', 1000);        // 1 second delay for header
+            delayElement('marquee', 2000);       // 2 seconds delay for marquee
+            delayElement('table', 3000);         // 3 seconds delay for the table
+            delayElement('mainButton', 4000);    // 4 seconds delay for the main button
+            delayElement('fakeButtons', 5000);   // 5 seconds delay for the fake buttons
+            delayElement('footer', 6000);        // 6 seconds delay for the footer
+        };
     </script>
+
+    <style>
+        #header, #marquee, #table, #mainButton, #fakeButtons, #footer {
+            display: none;
+        }
+    </style>
 </head>
 <body bgcolor="#00FF00" text="#000000" link="#FF0000" vlink="#800080" alink="#00FFFF">
 
-    <center><h1><font color="#FF00FF">Willkommen zu FroschRegistrierungsServiceGesellschaft mbH!</font></h1></center>
+    <div id="header">
+        <center><h1><font color="#FF00FF">Willkommen zu FroschRegistrierungsServiceGesellschaft mbH!</font></h1></center>
+    </div>
 
-    <marquee bgcolor="#FF0000">
-        <font color="#FFFFFF" size="5">ACHTUNG: Registriere deinen Frosch noch heute bei der FroschRegistrierungsServiceGesellschaft mbH!</font>
-    </marquee>
+    <div id="marquee">
+        <marquee bgcolor="#FF0000">
+            <font color="#FFFFFF" size="5">ACHTUNG: Registriere deinen Frosch noch heute bei der FroschRegistrierungsServiceGesellschaft mbH!</font>
+        </marquee>
+    </div>
 
-    <center><h2><font color="#FF0000">Die LängstenWörterInDerDeutschenSpracheFroschRegistrierung</font></h2></center>
+    <div id="table">
+        <center><h2><font color="#FF0000">Die LängstenWörterInDerDeutschenSpracheFroschRegistrierung</font></h2></center>
 
-    <table border="5" bordercolor="#0000FF" width="80%" bgcolor="#FFFF00" align="center">
-        <tr>
-            <td align="center">
-                <img src="https://media.giphy.com/media/l0HlKz5iQxZe7DfIs/giphy.gif" alt="Rotating Frog">
-            </td>
-            <td>
-                <h2><font color="#000000">Wie man seinen Frosch registriert:</font></h2>
-                <ul>
-                    <li>Fülle das <b>FroschRegistrierungsFormularAusfuellungDokument</b> aus.</li>
-                    <li>Lege eine Kopie deiner <b>AmphibienBesitzerschaftBestätigung</b> bei.</li>
-                    <li>Bezahle die <b>FroschRegistrierungsVerwaltungsGebührÜberweisungsKosten</b>.</li>
-                    <li>Klicke auf den großen blinkenden Button, um deinen Frosch zu registrieren!</li>
-                </ul>
-            </td>
-        </tr>
-    </table>
+        <table border="5" bordercolor="#0000FF" width="80%" bgcolor="#FFFF00" align="center">
+            <tr>
+                <td align="center">
+                    <img src="https://media.giphy.com/media/l0HlKz5iQxZe7DfIs/giphy.gif" alt="Rotating Frog">
+                </td>
+                <td>
+                    <h2><font color="#000000">Wie man seinen Frosch registriert:</font></h2>
+                    <ul>
+                        <li>Fülle das <b>FroschRegistrierungsFormularAusfuellungDokument</b> aus.</li>
+                        <li>Lege eine Kopie deiner <b>AmphibienBesitzerschaftBestätigung</b> bei.</li>
+                        <li>Bezahle die <b>FroschRegistrierungsVerwaltungsGebührÜberweisungsKosten</b>.</li>
+                        <li>Klicke auf den großen blinkenden Button, um deinen Frosch zu registrieren!</li>
+                    </ul>
+                </td>
+            </tr>
+        </table>
+    </div>
 
-    <center>
-        <h2><font color="#FF0000"><blink>Klicke hier, um deinen Frosch JETZT zu registrieren!</blink></font></h2>
-        <a href="http://www.frog-registration.com">
-            <img src="https://media.giphy.com/media/xTiTnhpVzhC7f79JuE/giphy.gif" alt="Click to register button" width="300">
-        </a>
-    </center>
+    <div id="mainButton">
+        <center>
+            <h2><font color="#FF0000"><blink>Klicke hier, um deinen Frosch JETZT zu registrieren!</blink></font></h2>
+            <a href="http://www.frog-registration.com">
+                <img src="https://media.giphy.com/media/xTiTnhpVzhC7f79JuE/giphy.gif" alt="Click to register button" width="300">
+            </a>
+        </center>
+    </div>
+
+    <div id="fakeButtons">
+        <button style="background-color:#FF0000; color:#FFFFFF; padding:10px 20px;">The Real Button</button>
+    </div>
 
     <center>
         <img src="images/tanzendes_baby.gif" alt=""Tanzendes Baby" width="128" height="128" />
     </center>
 
-    <center>
-        <font color="#FF0000" size="4">© 1998 FroschRegistrierungsServiceGesellschaft mbH. Alle Rechte vorbehalten.</font>
-    </center>
-
+    <div id="footer">
+        <center>
+            <font color="#FF0000" size="4">© 1998 FroschRegistrierungsServiceGesellschaft mbH. Alle Rechte vorbehalten.</font>
+        </center>
+    </div>
 </body>
 </html>
