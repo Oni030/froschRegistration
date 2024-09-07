@@ -34,6 +34,10 @@ def home():
 def timeout():
     return render_template('timeout.html')
 
+@app.route('/login')
+def login():
+    return render_template('login.html')    
+
 @app.route('/reset')
 def reset():
     # Reset the timer
