@@ -60,6 +60,21 @@
             padding: 10px;
             margin-bottom: 10px;
         }
+        /* Stil für die Pop-ups */
+        .popup {
+            position: absolute;
+            background-color: #ffeb3b;
+            border: 2px solid #000;
+            padding: 10px;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+            cursor: move;
+            z-index: 1000;
+        }
+
+        .popup img {
+            max-width: 300%;
+            max-height: 300px; /* Höhe der Bilder auf maximal 100px beschränken */
+        }
     </style>
 </head>
 <body>
@@ -147,6 +162,9 @@
     let currentFirstName = "";
     let currentLastName = "";
     let currentFrogName = "";
+    const correctFirstName = "BEN"; // Der richtige Vorname
+    const correctLastName = "HOP";  // Der richtige Nachname
+    const correctFrogName = "KER"; // Der richtige Froschname
 
     // Funktionen für Vornamen
     function updateFirstName() {
@@ -222,7 +240,7 @@
             const frogName = document.getElementById('frogNameOutput').innerText;
             const frogArms = document.getElementById('frogArms').value;
 
-            // Send the data to the Flask server using fetch
+                // Send the data to the Flask server using fetch
             fetch('/submit_frog_info', {
                 method: 'POST',
                 headers: {
@@ -243,7 +261,7 @@
                     alert('There was an error submitting the frog information.');
                 }
             });
-        }
+        };
 
     // Überprüfen, ob alle Eingaben korrekt sind
     function validateFormAndSubmit() {
@@ -254,7 +272,13 @@
             alert("Falsche Antwort! Dein Frosch hat 4 Arme und 2 Augen.");
             return false;
         }
-       
+        
+        // Überprüfen, ob die Namen korrekt eingegeben wurden
+        if (currentFirstName !== correctFirstName || currentLastName !== correctLastName || currentFrogName !== correctFrogName) {
+            alert("Der Name stimmt nicht überein! Bitte gib den richtigen Namen ein.");
+            return;
+        }
+
         submitFrogInfo();
     }
 
@@ -299,6 +323,86 @@
             });
         }
     
+
+
+        /* POPUP STUFF */
+        /***************/
+
+        const maxPopups = 30; // Maximale Anzahl der Pop-ups
+    let currentPopups = 0;
+
+    // Array mit Bild-URLs
+    const images = [
+        'https://via.placeholder.com/150/FF0000/FFFFFF?text=Bild1',
+        'https://via.placeholder.com/150/00FF00/FFFFFF?text=Bild2',
+        'https://via.placeholder.com/150/0000FF/FFFFFF?text=Bild3',
+        'https://via.placeholder.com/150/FFFF00/FFFFFF?text=Bild4',
+        'https://via.placeholder.com/150/FF00FF/FFFFFF?text=Bild5',
+        'https://via.placeholder.com/150/00FFFF/FFFFFF?text=Bild6',
+        'https://via.placeholder.com/150/FF8000/FFFFFF?text=Bild7'
+    ];
+
+    // Funktion zum Erzeugen eines Pop-ups
+    function createPopup() {
+        if (currentPopups >= maxPopups) return; // Verhindert, dass mehr als maxPopups erzeugt werden
+
+        const popup = document.createElement('div');
+        popup.className = 'popup';
+
+        // Zufälliges Bild auswählen
+        const randomImage = images[Math.floor(Math.random() * images.length)];
+        popup.innerHTML = `<img src="${randomImage}" alt="Zufälliges Bild">`;
+
+        // Zufällige Positionierung auf der Seite
+        const randomX = Math.random() * (window.innerWidth - 150); // Maximal 150px breite Pop-ups
+        const randomY = Math.random() * (window.innerHeight - 150); // Maximal 150px hohe Pop-ups
+        popup.style.left = randomX + 'px';
+        popup.style.top = randomY + 'px';
+
+        document.body.appendChild(popup);
+        currentPopups++;
+
+        makeDraggable(popup);
+    }
+
+    // Funktion, um ein Element draggable zu machen
+    function makeDraggable(element) {
+        let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+
+        element.onmousedown = dragMouseDown;
+
+        function dragMouseDown(e) {
+            e = e || window.event;
+            e.preventDefault();
+            // Mausposition beim Starten des Dragging
+            pos3 = e.clientX;
+            pos4 = e.clientY;
+            document.onmouseup = closeDragElement;
+            document.onmousemove = elementDrag;
+        }
+
+        function elementDrag(e) {
+            e = e || window.event;
+            e.preventDefault();
+            // Berechnung der neuen Mausposition
+            pos1 = pos3 - e.clientX;
+            pos2 = pos4 - e.clientY;
+            pos3 = e.clientX;
+            pos4 = e.clientY;
+            // Setzen der neuen Position des Elements
+            element.style.top = (element.offsetTop - pos2) + "px";
+            element.style.left = (element.offsetLeft - pos1) + "px";
+        }
+
+        function closeDragElement() {
+            // Stoppe das Verschieben, wenn die Maustaste losgelassen wird
+            document.onmouseup = null;
+            document.onmousemove = null;
+        }
+    }
+
+    // Wiederholtes Erzeugen von Pop-ups
+    setInterval(createPopup, 3000); // Alle 3 Sekunden wird ein neues Pop-up erzeugt
     
 </script>
 
