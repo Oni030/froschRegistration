@@ -90,11 +90,40 @@
             75% { transform: rotate(5deg); }
             100% { transform: rotate(-5deg); }
         }
+
+        .overlay {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.9);
+            border: 2px solid black;
+            padding: 20px;
+            width: 300px;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+            cursor: move;
+        }
     </style>
 </head>
 <body>
 
 <h1>Frosch-Registrierung</h1>
+
+<div id="fakeID" class="overlay" style="top: 100px; left: 500px;">
+    <h3>Frosch-ID</h3>
+    <p><strong>Name:</strong>Kerminator</p>
+    <p><strong>Geburtsdatum:</strong> 20.03.2024</p>
+    <p><strong>Froschfarbe:</strong> British racing green (#004225)</p>
+    <p><strong>Arme:</strong> 4</p>
+    <p><strong>Augen:</strong> 2</p>
+</div>
+
+<!-- Fake-Geburtsurkunde-Overlay -->
+<div id="birthCertificate" class="overlay" style="top: 300px; left: 700px;">
+    <h3>Geburtsurkunde DU</h3>
+    <p><strong>Vorname:</strong>Benjamin</p>
+    <p><strong>Nachname:</strong>Hopper</p>
+    <p><strong>Geburtsdatum:</strong> 04.07.1997</p>
+    <p><strong>Staatsangehörigkeit:</strong>Deutsch</p>
+    <p><strong>Adresse:</strong> Froschstraße 42</p>
+</div>
 
 <div style="display: flex;">
     <div class="">
@@ -210,9 +239,9 @@
     let currentFirstName = "";
     let currentLastName = "";
     let currentFrogName = "";
-    const correctFirstName = "BEN"; // Der richtige Vorname
-    const correctLastName = "HOP";  // Der richtige Nachname
-    const correctFrogName = "KER"; // Der richtige Froschname
+    const correctFirstName = "BENJAMIN"; // Der richtige Vorname
+    const correctLastName = "HOPPER";  // Der richtige Nachname
+    const correctFrogName = "KERMINATOR"; // Der richtige Froschname
 
     // Funktionen für Vornamen
     function updateFirstName() {
@@ -381,40 +410,47 @@
 
     // Array mit Bild-URLs
     const images = [
-        'https://via.placeholder.com/150/FF0000/FFFFFF?text=Bild1',
-        'https://via.placeholder.com/150/00FF00/FFFFFF?text=Bild2',
-        'https://via.placeholder.com/150/0000FF/FFFFFF?text=Bild3',
-        'https://via.placeholder.com/150/FFFF00/FFFFFF?text=Bild4',
-        'https://via.placeholder.com/150/FF00FF/FFFFFF?text=Bild5',
-        'https://via.placeholder.com/150/00FFFF/FFFFFF?text=Bild6',
-        'https://via.placeholder.com/150/FF8000/FFFFFF?text=Bild7'
-    ];
+        '../static/popups/frogdating.png',
+        '../static/popups/frogquest.png',
+        '../static/popups/frogs.png',
+        '../static/popups/hang.png',
+        '../static/popups/kp.png'
+        ];
 
     // Funktion zum Erzeugen eines Pop-ups
     function createPopup() {
-        if (currentPopups >= maxPopups) return; // Verhindert, dass mehr als maxPopups erzeugt werden
-
-        const popup = document.createElement('div');
-        popup.className = 'popup';
-
-        // Zufälliges Bild auswählen
-        const randomImage = images[Math.floor(Math.random() * images.length)];
-        popup.innerHTML = `<img src="${randomImage}" alt="Zufälliges Bild">`;
-
-        // Zufällige Positionierung auf der Seite
-        const randomX = Math.random() * (window.innerWidth - 150); // Maximal 150px breite Pop-ups
-        const randomY = Math.random() * (window.innerHeight - 150); // Maximal 150px hohe Pop-ups
-        popup.style.left = randomX + 'px';
-        popup.style.top = randomY + 'px';
-
-        document.body.appendChild(popup);
-        currentPopups++;
-
-        makeDraggable(popup);
+    if (currentPopups >= maxPopups) {
+        // Entferne das älteste Popup
+        const firstPopup = document.querySelector('.popup');
+        if (firstPopup) {
+            document.body.removeChild(firstPopup);
+            currentPopups--;
+        }
     }
 
+    const popup = document.createElement('div');
+    popup.className = 'popup';
+    popup.id = 'popup' + currentPopups; // Einzigartige ID für jedes Popup
+
+    // Zufälliges Bild auswählen
+    const randomImage = images[Math.floor(Math.random() * images.length)];
+    popup.innerHTML = `<img src="${randomImage}" alt="Zufälliges Bild" width="300">`;
+
+    // Zufällige Positionierung auf der Seite
+    const randomX = Math.random() * (window.innerWidth - 150); // Maximal 150px breite Pop-ups
+    const randomY = Math.random() * (window.innerHeight - 150); // Maximal 150px hohe Pop-ups
+    popup.style.left = randomX + 'px';
+    popup.style.top = randomY + 'px';
+
+    document.body.appendChild(popup);
+    currentPopups++;
+
+    makeDraggable(popup.id); // Verwende die ID des Pop-ups
+}
+
     // Funktion, um ein Element draggable zu machen
-    function makeDraggable(element) {
+    function makeDraggable(elementId) {
+        const element = document.getElementById(elementId);
         let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
 
         element.onmousedown = dragMouseDown;
@@ -451,7 +487,8 @@
 
     // Wiederholtes Erzeugen von Pop-ups
     setInterval(createPopup, 3000); // Alle 3 Sekunden wird ein neues Pop-up erzeugt
-    
+    makeDraggable('fakeID');
+    makeDraggable('birthCertificate');
 </script>
 
 </body>
