@@ -52,6 +52,17 @@
         </marquee>
     </div>
 
+    <!-- If there is frog info (check if first name is assigned )-->
+    {% if frog_info %}
+        {% if frog_info.first_name %}
+        <h2>Frog Information</h2>
+            <p><strong>First Name:</strong> {{ frog_info.first_name }}</p>
+            <p><strong>Last Name:</strong> {{ frog_info.last_name }}</p>
+            <p><strong>Frog's Name:</strong> {{ frog_info.frog_name }}</p>
+            <p><strong>Number of Frog Arms:</strong> {{ frog_info.frog_arms }}</p>
+        {% endif %}
+    {% endif %}
+
     <div id="table2">
         <table>
             <tr>
@@ -95,8 +106,13 @@
                     <img src="../static/images/FROGGLASSES.png" alt="Frog Glasses">
                 </td>
             </tr>
-        </table>  
+        </table>
     </div>
+
+    <audio controls autoplay hidden>
+        <source src="../static/musics/frogNationalAnthem.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
 
     <div id="mainButton">
         <center>
