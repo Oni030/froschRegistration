@@ -60,6 +60,19 @@
             padding: 10px;
             margin-bottom: 10px;
         }
+        
+        .wiggle {
+            display: inline-block;
+            animation: wiggle 1s infinite;
+        }
+
+        @keyframes wiggle {
+            0% { transform: rotate(-5deg); }
+            25% { transform: rotate(5deg); }
+            50% { transform: rotate(-5deg); }
+            75% { transform: rotate(5deg); }
+            100% { transform: rotate(-5deg); }
+        }
     </style>
 </head>
 <body>
@@ -68,7 +81,7 @@
 
 <div style="display: flex;">
     <div class="">
-        <img src="{{ url_for('static', filename='images/AmphibianAdvocates.gif') }}" width="200" />
+        <img src="{{ url_for('static', filename='images/AmphibianAdvocates.gif') }}" width="200" class="wiggle" />
     </div>
     <div class="container">
         <h2>Vorname</h2>
@@ -118,13 +131,13 @@
         </select>
     </div>
     <div class="">
-        <img src="{{ url_for('static', filename='images/frogi.gif') }}" width="200" />
+        <img src="{{ url_for('static', filename='images/frogi.gif') }}" width="200" class="wiggle" />
     </div> 
 </div>
 
 <div style="display: flex;">
     <div class="">
-        <img src="{{ url_for('static', filename='images/FroschBotoxGif.gif') }}" width="200" />
+        <img src="{{ url_for('static', filename='images/FroschBotoxGif.gif') }}" width="200" class="wiggle" />
     </div>
     <div class="container">
         <h2>Froschname</h2>
@@ -170,7 +183,7 @@
         </div>
     </div>
     <div class="">
-        <img src="{{ url_for('static', filename='images/frogdating.png') }}" width="200" />
+        <img src="{{ url_for('static', filename='images/frogdating.png') }}" width="200" class="wiggle" />
     </div> 
 </div>
 
