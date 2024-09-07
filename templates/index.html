@@ -52,6 +52,17 @@
         </marquee>
     </div>
 
+    <!-- If there is frog info (check if first name is assigned )-->
+    {% if frog_info %}
+        {% if frog_info.first_name %}
+        <h2>Frog Information</h2>
+            <p><strong>First Name:</strong> {{ frog_info.first_name }}</p>
+            <p><strong>Last Name:</strong> {{ frog_info.last_name }}</p>
+            <p><strong>Frog's Name:</strong> {{ frog_info.frog_name }}</p>
+            <p><strong>Number of Frog Arms:</strong> {{ frog_info.frog_arms }}</p>
+        {% endif %}
+    {% endif %}
+
     <div id="table2">
         <table>
             <tr>

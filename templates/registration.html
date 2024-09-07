@@ -1,0 +1,306 @@
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frosch-Registrierung</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
+            background-color: #ffe135;
+            color: #000000;
+        }
+        h1 {
+            font-size: 3em;
+            color: #ff0000;
+            text-shadow: 2px 2px 8px #ffff00;
+        }
+        .container {
+            margin: 20px;
+            padding: 20px;
+            border: 5px solid #00ff00;
+            background-color: #ff69b4;
+            box-shadow: 10px 10px 15px #000;
+            text-align: center;
+        }
+        .output-box {
+            font-size: 2em;
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 2px solid #000;
+            width: 300px;
+            text-align: center;
+            background-color: #ffffff;
+        }
+        .button-container, .slider-container {
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px;
+            margin: 0 10px;
+            font-size: 1em;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+        }
+        .continue-button {
+            background-color: #00ff00;
+            color: #ffffff;
+        }
+        .cancel-button {
+            background-color: #ff0000;
+            color: #ffffff;
+        }
+        select {
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Frosch-Registrierung</h1>
+
+<div class="container">
+    <h2>Vorname</h2>
+    <div class="slider-container">
+        <div id="firstNameOutput" class="output-box"></div>
+        <input type="range" id="firstNameSlider" min="0" max="25" value="0" oninput="updateFirstName()">
+        <div class="button-container">
+            <button onclick="addFirstName()">+</button>
+            <button onclick="clearFirstName()">-</button>
+        </div>
+    </div>
+    <select id="firstNameDropdown" onchange="checkLie()">
+        <option value="">Wähle einen Namen</option>
+        <option>John</option>
+        <option>Frodo</option>
+        <option>Batman</option>
+        <option>Harry</option>
+        <option>Spongebob</option>
+    </select>
+</div>
+
+<div class="container">
+    <h2>Nachname</h2>
+    <div class="slider-container">
+        <div id="lastNameOutput" class="output-box"></div>
+        <input type="range" id="lastNameSlider" min="0" max="25" value="0" oninput="updateLastName()">
+        <div class="button-container">
+            <button onclick="addLastName()">+</button>
+            <button onclick="clearLastName()">-</button>
+        </div>
+    </div>
+    <select id="lastNameDropdown" onchange="checkLie()">
+        <option value="">Wähle einen Nachnamen</option>
+        <option>Smith</option>
+        <option>Baggins</option>
+        <option>Wayne</option>
+        <option>Potter</option>
+        <option>SquarePants</option>
+    </select>
+</div>
+
+<div class="container">
+    <h2>Froschname</h2>
+    <div class="slider-container">
+        <div id="frogNameOutput" class="output-box"></div>
+        <input type="range" id="frogNameSlider" min="0" max="25" value="0" oninput="updateFrogName()">
+        <div class="button-container">
+            <button onclick="addFrogName()">+</button>
+            <button onclick="clearFrogName()">-</button>
+        </div>
+    </div>
+    <select id="frogNameDropdown" onchange="checkLie()">
+        <option value="">Wähle einen Froschnamen</option>
+        <option>Kermit</option>
+        <option>Jumpy</option>
+        <option>Quacker</option>
+        <option>Prince</option>
+        <option>Froppy</option>
+    </select>
+</div>
+
+<div class="container">
+    <h2>Frosch-Fragen</h2>
+    <label>Wie viele Arme hat der Frosch?</label>
+    <input type="number" id="frogArms" value="0" min="0" max="10">
+    <button onclick="randomize('frogArms')">Zufällig</button><br>
+
+    <label>Wie viele Augen hat der Frosch?</label>
+    <input type="number" id="frogEyes" value="0" min="0" max="10">
+    <button onclick="randomize('frogEyes')">Zufällig</button><br>
+
+    <div class="button-container">
+        <button class="cancel-button" onclick="cancel()">Abbrechen</button>
+        <button class="continue-button" onclick="validateFormAndSubmit()">Weiter</button>
+    </div>
+</div>
+
+<script>
+    const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    let currentFirstName = "";
+    let currentLastName = "";
+    let currentFrogName = "";
+
+    // Funktionen für Vornamen
+    function updateFirstName() {
+        const sliderValue = document.getElementById('firstNameSlider').value;
+        const selectedLetter = alphabet[sliderValue];
+        document.getElementById('firstNameOutput').innerText = currentFirstName + selectedLetter;
+    }
+
+    function addFirstName() {
+        const sliderValue = document.getElementById('firstNameSlider').value;
+        const selectedLetter = alphabet[sliderValue];
+        currentFirstName += selectedLetter;
+        document.getElementById('firstNameOutput').innerText = currentFirstName;
+    }
+
+    function clearFirstName() {
+        currentFirstName = "";
+        document.getElementById('firstNameOutput').innerText = currentFirstName;
+    }
+
+    // Funktionen für Nachnamen
+    function updateLastName() {
+        const sliderValue = document.getElementById('lastNameSlider').value;
+        const selectedLetter = alphabet[sliderValue];
+        document.getElementById('lastNameOutput').innerText = currentLastName + selectedLetter;
+    }
+
+    function addLastName() {
+        const sliderValue = document.getElementById('lastNameSlider').value;
+        const selectedLetter = alphabet[sliderValue];
+        currentLastName += selectedLetter;
+        document.getElementById('lastNameOutput').innerText = currentLastName;
+    }
+
+    function clearLastName() {
+        currentLastName = "";
+        document.getElementById('lastNameOutput').innerText = currentLastName;
+    }
+
+    // Funktionen für Froschnamen
+    function updateFrogName() {
+        const sliderValue = document.getElementById('frogNameSlider').value;
+        const selectedLetter = alphabet[sliderValue];
+        document.getElementById('frogNameOutput').innerText = currentFrogName + selectedLetter;
+    }
+
+    function addFrogName() {
+        const sliderValue = document.getElementById('frogNameSlider').value;
+        const selectedLetter = alphabet[sliderValue];
+        currentFrogName += selectedLetter;
+        document.getElementById('frogNameOutput').innerText = currentFrogName;
+    }
+
+    function clearFrogName() {
+        currentFrogName = "";
+        document.getElementById('frogNameOutput').innerText = currentFrogName;
+    }
+
+    // Zufallszahlen für Froschfragen
+    function randomize(field) {
+        document.getElementById(field).value = Math.floor(Math.random() * 10) + 1;
+    }
+
+    // Überprüfen, ob falsche Namen ausgewählt wurden
+    function checkLie() {
+        alert("Ich glaube du lügst!");
+    }
+
+    function submitFrogInfo() {
+            // Get values from the elements with the specified IDs
+            const firstName = document.getElementById('firstNameOutput').innerText;
+            const lastName = document.getElementById('lastNameOutput').innerText;
+            const frogName = document.getElementById('frogNameOutput').innerText;
+            const frogArms = document.getElementById('frogArms').value;
+
+            // Send the data to the Flask server using fetch
+            fetch('/submit_frog_info', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    first_name: firstName,
+                    last_name: lastName,
+                    frog_name: frogName,
+                    frog_arms: frogArms
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Frog information submitted successfully!');
+                } else {
+                    alert('There was an error submitting the frog information.');
+                }
+            });
+        }
+
+    // Überprüfen, ob alle Eingaben korrekt sind
+    function validateFormAndSubmit() {
+        const arms = document.getElementById('frogArms').value;
+        const eyes = document.getElementById('frogEyes').value;
+
+        if (arms != 4 || eyes != 2) {
+            alert("Falsche Antwort! Dein Frosch hat 4 Arme und 2 Augen.");
+            return false;
+        }
+       
+        submitFrogInfo();
+    }
+
+    // Abbrechen (als Weiter getarnt)
+	    function cancel() {
+        alert("Die Registrierung wurde abgebrochen.");
+        // Hier könnte man weiterleiten oder die Seite neu laden
+        window.location.reload();
+    }
+
+
+    function submitFrogInfo() {
+            // Get values from the elements with the specified IDs
+            const firstName = document.getElementById('firstNameOutput').innerText;
+            const lastName = document.getElementById('lastNameOutput').innerText;
+            const frogName = document.getElementById('frogNameOutput').innerText;
+            const frogArms = document.getElementById('frogArms').value;
+
+            // Send the data to the Flask server using fetch
+            fetch('/submit_frog_info', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    first_name: firstName,
+                    last_name: lastName,
+                    frog_name: frogName,
+                    frog_arms: frogArms
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert("Formular erfolgreich ausgefüllt!");
+
+                    // redirect to home
+                    window.location.href = "/";
+                } else {
+                    alert('There was an error submitting the frog information.');
+                }
+            });
+        }
+    
+    
+</script>
+
+</body>
+</html>
