@@ -60,6 +60,7 @@
             padding: 10px;
             margin-bottom: 10px;
         }
+
         /* Stil für die Pop-ups */
         .popup {
             position: absolute;
@@ -74,6 +75,20 @@
         .popup img {
             max-width: 300%;
             max-height: 300px; /* Höhe der Bilder auf maximal 100px beschränken */
+
+        }
+        
+        .wiggle {
+            display: inline-block;
+            animation: wiggle 1s infinite;
+        }
+
+        @keyframes wiggle {
+            0% { transform: rotate(-5deg); }
+            25% { transform: rotate(5deg); }
+            50% { transform: rotate(-5deg); }
+            75% { transform: rotate(5deg); }
+            100% { transform: rotate(-5deg); }
         }
     </style>
 </head>
@@ -81,81 +96,114 @@
 
 <h1>Frosch-Registrierung</h1>
 
-<div class="container">
-    <h2>Vorname</h2>
-    <div class="slider-container">
-        <div id="firstNameOutput" class="output-box"></div>
-        <input type="range" id="firstNameSlider" min="0" max="25" value="0" oninput="updateFirstName()">
+<div style="display: flex;">
+    <div class="">
+        <img src="{{ url_for('static', filename='images/AmphibianAdvocates.gif') }}" width="200" class="wiggle" />
+    </div>
+    <div class="container">
+        <h2>Vorname</h2>
+        <div class="slider-container">
+            <div id="firstNameOutput" class="output-box"></div>
+            <input type="range" id="firstNameSlider" min="0" max="25" value="0" oninput="updateFirstName()">
+            <div class="button-container">
+                <button onclick="addFirstName()">+</button>
+                <button onclick="clearFirstName()">-</button>
+            </div>
+        </div>
+        <select id="firstNameDropdown" onchange="checkLie()">
+            <option value="">Wähle einen Namen</option>
+            <option>John</option>
+            <option>Frodo</option>
+            <option>Batman</option>
+            <option>Harry</option>
+            <option>Spongebob</option>
+        </select>
+    </div>  
+    <div class="">
+        <img src="{{ url_for('static', filename='images/Frogstagram.gif') }}" width="200" />
+    </div>  
+</div>
+
+<div style="display: flex;">
+    <div class="">
+        <img src="{{ url_for('static', filename='images/frogify.jpeg') }}" width="200" />
+    </div>
+    <div class="container">
+        <h2>Nachname</h2>
+        <div class="slider-container">
+            <div id="lastNameOutput" class="output-box"></div>
+            <input type="range" id="lastNameSlider" min="0" max="25" value="0" oninput="updateLastName()">
+            <div class="button-container">
+                <button onclick="addLastName()">+</button>
+                <button onclick="clearLastName()">-</button>
+            </div>
+        </div>
+        <select id="lastNameDropdown" onchange="checkLie()">
+            <option value="">Wähle einen Nachnamen</option>
+            <option>Smith</option>
+            <option>Baggins</option>
+            <option>Wayne</option>
+            <option>Potter</option>
+            <option>SquarePants</option>
+        </select>
+    </div>
+    <div class="">
+        <img src="{{ url_for('static', filename='images/frogi.gif') }}" width="200" class="wiggle" />
+    </div> 
+</div>
+
+<div style="display: flex;">
+    <div class="">
+        <img src="{{ url_for('static', filename='images/FroschBotoxGif.gif') }}" width="200" class="wiggle" />
+    </div>
+    <div class="container">
+        <h2>Froschname</h2>
+        <div class="slider-container">
+            <div id="frogNameOutput" class="output-box"></div>
+            <input type="range" id="frogNameSlider" min="0" max="25" value="0" oninput="updateFrogName()">
+            <div class="button-container">
+                <button onclick="addFrogName()">+</button>
+                <button onclick="clearFrogName()">-</button>
+            </div>
+        </div>
+        <select id="frogNameDropdown" onchange="checkLie()">
+            <option value="">Wähle einen Froschnamen</option>
+            <option>Kermit</option>
+            <option>Jumpy</option>
+            <option>Quacker</option>
+            <option>Prince</option>
+            <option>Froppy</option>
+        </select>
+    </div>
+    <div class="">
+        <img src="{{ url_for('static', filename='images/frog-space.gif') }}" width="200" />
+    </div> 
+</div>
+
+<div style="display: flex;">
+    <div class="">
+        <img src="{{ url_for('static', filename='images/FROGFLIX.gif') }}" width="200" />
+    </div>
+    <div class="container">
+        <h2>Frosch-Fragen</h2>
+        <label>Wie viele Arme hat der Frosch?</label>
+        <input type="number" id="frogArms" value="0" min="0" max="10">
+        <button onclick="randomize('frogArms')">Zufällig</button><br>
+
+        <label>Wie viele Augen hat der Frosch?</label>
+        <input type="number" id="frogEyes" value="0" min="0" max="10">
+        <button onclick="randomize('frogEyes')">Zufällig</button><br>
+
         <div class="button-container">
-            <button onclick="addFirstName()">+</button>
-            <button onclick="clearFirstName()">-</button>
+            <button class="cancel-button" onclick="cancel()">Abbrechen</button>
+            <button class="continue-button" onclick="validateFormAndSubmit()">Weiter</button>
         </div>
     </div>
-    <select id="firstNameDropdown" onchange="checkLie()">
-        <option value="">Wähle einen Namen</option>
-        <option>John</option>
-        <option>Frodo</option>
-        <option>Batman</option>
-        <option>Harry</option>
-        <option>Spongebob</option>
-    </select>
+    <div class="">
+        <img src="{{ url_for('static', filename='images/frogdating.png') }}" width="200" class="wiggle" />
+    </div> 
 </div>
 
-<div class="container">
-    <h2>Nachname</h2>
-    <div class="slider-container">
-        <div id="lastNameOutput" class="output-box"></div>
-        <input type="range" id="lastNameSlider" min="0" max="25" value="0" oninput="updateLastName()">
-        <div class="button-container">
-            <button onclick="addLastName()">+</button>
-            <button onclick="clearLastName()">-</button>
-        </div>
-    </div>
-    <select id="lastNameDropdown" onchange="checkLie()">
-        <option value="">Wähle einen Nachnamen</option>
-        <option>Smith</option>
-        <option>Baggins</option>
-        <option>Wayne</option>
-        <option>Potter</option>
-        <option>SquarePants</option>
-    </select>
-</div>
-
-<div class="container">
-    <h2>Froschname</h2>
-    <div class="slider-container">
-        <div id="frogNameOutput" class="output-box"></div>
-        <input type="range" id="frogNameSlider" min="0" max="25" value="0" oninput="updateFrogName()">
-        <div class="button-container">
-            <button onclick="addFrogName()">+</button>
-            <button onclick="clearFrogName()">-</button>
-        </div>
-    </div>
-    <select id="frogNameDropdown" onchange="checkLie()">
-        <option value="">Wähle einen Froschnamen</option>
-        <option>Kermit</option>
-        <option>Jumpy</option>
-        <option>Quacker</option>
-        <option>Prince</option>
-        <option>Froppy</option>
-    </select>
-</div>
-
-<div class="container">
-    <h2>Frosch-Fragen</h2>
-    <label>Wie viele Arme hat der Frosch?</label>
-    <input type="number" id="frogArms" value="0" min="0" max="10">
-    <button onclick="randomize('frogArms')">Zufällig</button><br>
-
-    <label>Wie viele Augen hat der Frosch?</label>
-    <input type="number" id="frogEyes" value="0" min="0" max="10">
-    <button onclick="randomize('frogEyes')">Zufällig</button><br>
-
-    <div class="button-container">
-        <button class="cancel-button" onclick="cancel()">Abbrechen</button>
-        <button class="continue-button" onclick="validateFormAndSubmit()">Weiter</button>
-    </div>
-</div>
 
 <script>
     const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
