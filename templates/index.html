@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>FroschRegistrierungsServiceGesellschaft mbH</title>
+    <title>Froschregistrierungsdienstleistungsbehörde</title>
 
     <script>
         function delayElement(elementId, delay) {
@@ -35,17 +35,17 @@
 
     <center>
         <a href="https://web.archive.org/web/19980215042546/http://www4.yahoo.de/">
-            <img src="{{ url_for('static', filename='images/yahoo.jpg') }}" />
+            <img src="../static/images/yahoo.jpg" />
         </a>
-        <img src="{{ url_for('static', filename='images/FakeSignIn2.png') }}" height="64" />
+        <img src="../static/images/FakeSignIn2.png" height="64" />
     </center>
 
     <div id="header">
         <center>
-            <h1><font color="#FF00FF">Offizielle Webseite der Froschregistrierungsbehörde</font></h1>
+            <h1><font color="#FF00FF">Offizielle Webseite der Froschregistrierungsdienstleistungsbehörde</font></h1>
         </center>
         <center>
-            <img src="{{ url_for('static', filename='images/main.gif') }}" height="128" />
+            <img src="../static/images/main.gif" height="128" />
         </center>
     </div>
     
@@ -57,55 +57,50 @@
         </marquee>
     </div>
 
-    <!-- If there is frog info (check if first name is assigned )-->
-    {% if frog_info %}
-        {% if frog_info.first_name %}
-        <h2>Frog Information</h2>
-            <p><strong>First Name:</strong> {{ frog_info.first_name }}</p>
-            <p><strong>Last Name:</strong> {{ frog_info.last_name }}</p>
-            <p><strong>Frog's Name:</strong> {{ frog_info.frog_name }}</p>
-            <p><strong>Number of Frog Arms:</strong> {{ frog_info.frog_arms }}</p>
-        {% endif %}
-    {% endif %}
-
-    <div id="table2">
+    <div id="table">
         <table>
             <tr>
                 <td>
                     <img src="../static/images/FROSCHSERUM.png" alt="">
                 </td>
-                <td align="center" border="5" bordercolor="#0000FF" width="80%" bgcolor="#FFFF00" align="center" >
-                    Liebe Froschhalter,
+                <td width="80%" bgcolor="#FFFF00" align="">
+                    <font size="5">
+                        Liebe Froschhalter,
                     <br />
                     Die Froschverordnung von 2024 schreibt klar vor: Wer einen Frosch besitzt, muss diesen bei der zuständigen Behörde registrieren lassen. Du fragst dich vielleicht: "Warum sollte ich meinen Frosch registrieren? Es ist doch nur ein kleiner, harmloser Hüpfer!" Aber die Antwort ist einfach: Sicherheit geht vor – für dich, deinen Frosch und die gesamte Gesellschaft!
                     <ul>
                         <li>
                             Frosch-Tracking für Notfälle
-                            Stell dir vor, dein Frosch entwischt mitten in der Nacht! Dank der Registrierung kann die Frosch-Ortungszentrale (FOZ) deinen Frosch sofort aufspüren und sicher zurückbringen. Kein nächtliches Sumpf-Durchkämmen mehr für dich!
+                            Stell dir vor, dein Frosch entwischt mitten in der Nacht! Dank der <a href="registration.html">Registrierung</a> kann die Frosch-Ortungszentrale (FOZ) deinen Frosch sofort aufspüren und sicher zurückbringen. Kein nächtliches Sumpf-Durchkämmen mehr für dich!
                         </li>
+                        <br />
                         <li>
-                            Schutz vor illegalem Froschhandel
+                        Schutz vor illegalem Froschhandel
                             Die Unterwelt der Froschschmuggler schläft nicht. Dein Frosch könnte zum Ziel krimineller Banden werden, die ihn in ferne Länder verschiffen wollen. Mit einer offiziellen Registrierung hilfst du dabei, diese skrupellosen Geschäfte zu stoppen.
                         </li>
+                        <br />
                         <li>
                             Erlaubnis für Froschfreilassungen
-                            Du kannst deinen Frosch nicht einfach ohne Anmeldung in die Freiheit entlassen! Woher soll die Natur wissen, dass er die richtigen Froschpapiere hat? <a href="/register">Login</a> Eine registrierte Freilassung garantiert, dass dein Frosch in jedem Teich akzeptiert wird und nicht Opfer sozialer Ausgrenzung unter seinen Artgenossen wird.
-    
+                            Du kannst deinen Frosch nicht einfach ohne Anmeldung in die Freiheit entlassen! Woher soll die Natur wissen, dass er die richtigen Froschpapiere hat? Eine registrierte Freilassung garantiert, dass dein Frosch in jedem Teich akzeptiert wird und nicht Opfer sozialer Ausgrenzung unter seinen Artgenossen wird.
                         </li>
+                        <br />
                         <li>
                             Froschsteuer und Frosch-Versicherung
                             Klar, niemand zahlt gerne Steuern, aber die Froschsteuer ist für den Ausbau sicherer Springzonen in deiner Stadt unverzichtbar. Und mit der Frosch-Versicherung bist du vor Schäden durch unerwartete Quaksalven oder Sprunghavarien bestens abgesichert.
                         </li>
+                        <br />
                         <li>
                             Froschrechte und Froschpflichten
                             Ohne Registrierung könnte dein Frosch seine Froschbürgerrechte nicht wahrnehmen. Möchtest du wirklich riskieren, dass er keine Stimme bei der Wahl des nächsten Froschkönigs hat?
                         </li>
+                        <br />
                         <li>
                             Schutz vor illegalem Froschhandel
                             Die Unterwelt der Froschschmuggler schläft nicht. Dein Frosch könnte zum Ziel krimineller Banden werden, die ihn in ferne Länder verschiffen wollen. Mit einer offiziellen Registrierung hilfst du dabei, diese skrupellosen Geschäfte zu stoppen.
                         </li>
                     </ul>
                     Also, liebe Froschfreunde: Registriere deinen Frosch noch heute! Die Natur dankt es dir, und dein Frosch wird stolz auf seinen offiziellen Froschausweis sein. Den bekommst du übrigens gratis – inklusive der Garantie, dass er nicht auf dem Schwarzmarkt landet!
+                    </font>
                 </td>
                 <td>
                     <img src="../static/images/FROGGLASSES.png" alt="Frog Glasses">
@@ -123,26 +118,26 @@
         <center>
             <h2><font color="#FF0000"><blink>Klicke hier, um deinen <span class="pointer">Frosch</span> JETZT zu registrieren!</blink></font></h2>
             <a href="https://web.archive.org/web/20091022141657/http://geocities.com/youth_biweekly/062drama.html">
-                <img src="{{ url_for('static', filename='images/FakeSignIn3.png') }}" width="200" />
+                <img src="../static/images/FakeSignIn3.png" width="200" />
             </a>
             <a href="https://web.archive.org/web/20091026225635/http://br.geocities.com/forrozeiroarretado/ultimasnoticias180705.html">
-                <img src="{{ url_for('static', filename='images/FakeSignIn4.png') }}" width="200" />
+                <img src="../static/images/FakeSignIn4.png" width="200" />
             </a>
             <a href="https://web.archive.org/web/20091027041400/http://geocities.com/rgmay56/episode01">
-                <img src="{{ url_for('static', filename='images/FakeSignIn5.png') }}" width="200"/>
+                <img src="../static/images/FakeSignIn5.png" width="200"/>
             </a>
             <a href="https://web.archive.org/web/20090902021500/http://geocities.com/cheapcards2004/card_cheap_international_phone_usa.html">
-                <img src="{{ url_for('static', filename='images/FakeSignIn6.png') }}" width="200" />
+                <img src="../static/images/FakeSignIn6.png" width="200" />
             </a>
             <a href="https://web.archive.org/web/20090728063702/http://hk.geocities.com/ixingcn/jddb/gcllq02.html">
-                <img src="{{ url_for('static', filename='images/FakeSignIn8.png') }}" width="200" />
+                <img src="../static/images/FakeSignIn8.png" width="200" />
             </a>
             <br>
             <a href="https://www.youtube.com/">
-                <img src="{{ url_for('static', filename='images/FrogTube.gif') }}" width="200" />
+                <img src="../static/images/FrogTube.gif" width="200" />
             </a>
             <a href="https://www.telekom.de/festnetz?vo=INT14&wt_mc=sk_fnmzbbxx_14_fn-dp_21417216718_163260783105_706138739483_&wt_cc7=e_t%20home&gad_source=1&gclid=Cj0KCQjw8--2BhCHARIsAF_w1gyFSITLu3PWrCzxhW_gl9nrhq1Ps9L6yrKUU5kS_H7PCa0Fn0oce5EaAiTeEALw_wcB&gclsrc=aw.ds"></a>
-                <img src="{{ url_for('static', filename='images/deutsche_telefrog.gif') }}" width="200" />
+                <img src="../static/images/deutsche_telefrog.gif" width="200" />
             </a>            
         </center>
     </div>
@@ -152,12 +147,12 @@
     </div>
 
     <center>
-        <img src="{{ url_for('static', filename='images/tanzendes_baby.gif') }}" alt="Tanzendes Baby" width="128" height="128" />
+        <img src="../static/images/tanzendes_baby.gif" alt="Tanzendes Baby" width="128" height="128" />
     </center>
 
     <center>
-        <img src="{{ url_for('static', filename='images/netscape.gif') }}" />
-        <img src="{{ url_for('static', filename='images/frontpage.gif') }}" />
+        <img src="../static/images/netscape.gif" />
+        <img src="../static/images/frontpage.gif" />
     </center>
 
     <div id="footer">
