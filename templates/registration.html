@@ -69,7 +69,7 @@
             padding: 10px;
             box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
             cursor: move;
-            z-index: 1000;
+            z-index: 1;
         }
 
         .popup img {
@@ -93,12 +93,16 @@
 
         .overlay {
             position: absolute;
-            background-color: rgba(255, 255, 255, 0.9);
+            background-color: rgb(255, 255, 255);
             border: 2px solid black;
             padding: 20px;
             width: 300px;
             box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
             cursor: move;
+            z-index: 0;
+        }
+        .ad {
+            z-index: -1;
         }
     </style>
 </head>
@@ -126,8 +130,8 @@
 </div>
 
 <div style="display: flex;">
-    <div class="">
-        <img src="{{ url_for('static', filename='images/AmphibianAdvocates.gif') }}" width="200" class="wiggle" />
+    <div class="ad">
+        <img src="../static/images/AmphibianAdvocates.gif" width="200" class="wiggle" />
     </div>
     <div class="container">
         <h2>Vorname</h2>
@@ -148,14 +152,14 @@
             <option>Spongebob</option>
         </select>
     </div>  
-    <div class="">
-        <img src="{{ url_for('static', filename='images/Frogstagram.gif') }}" width="200" />
+    <div class="ad">
+        <img src="../static/images/Frogstagram.gif" width="200" />
     </div>  
 </div>
 
 <div style="display: flex;">
-    <div class="">
-        <img src="{{ url_for('static', filename='images/frogify.jpeg') }}" width="200" />
+    <div class="ad">
+        <img src="../static/images/frogify.jpeg" width="200" />
     </div>
     <div class="container">
         <h2>Nachname</h2>
@@ -176,14 +180,14 @@
             <option>SquarePants</option>
         </select>
     </div>
-    <div class="">
-        <img src="{{ url_for('static', filename='images/frogi.gif') }}" width="200" class="wiggle" />
+    <div class="ad">
+        <img src="../static/images/frogi.gif" width="200" class="wiggle" />
     </div> 
 </div>
 
 <div style="display: flex;">
-    <div class="">
-        <img src="{{ url_for('static', filename='images/FroschBotoxGif.gif') }}" width="200" class="wiggle" />
+    <div class="ad">
+        <img src="../static/images/FroschBotoxGif.gif" width="200" class="wiggle" />
     </div>
     <div class="container">
         <h2>Froschname</h2>
@@ -205,13 +209,13 @@
         </select>
     </div>
     <div class="">
-        <img src="{{ url_for('static', filename='images/frog-space.gif') }}" width="200" />
+        <img src="../static/images/frog-space.gif" width="200" />
     </div> 
 </div>
 
 <div style="display: flex;">
     <div class="">
-        <img src="{{ url_for('static', filename='images/FROGFLIX.gif') }}" width="200" />
+        <img src="../static/images/FROGFLIX.gif" width="200" />
     </div>
     <div class="container">
         <h2>Frosch-Fragen</h2>
@@ -229,7 +233,7 @@
         </div>
     </div>
     <div class="">
-        <img src="{{ url_for('static', filename='images/frogdating.png') }}" width="200" class="wiggle" />
+        <img src="../static/images/frogdating.png" width="200" class="wiggle" />
     </div> 
 </div>
 
@@ -317,27 +321,10 @@
             const frogName = document.getElementById('frogNameOutput').innerText;
             const frogArms = document.getElementById('frogArms').value;
 
-                // Send the data to the Flask server using fetch
-            fetch('/submit_frog_info', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    first_name: firstName,
-                    last_name: lastName,
-                    frog_name: frogName,
-                    frog_arms: frogArms
-                })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    alert('Frog information submitted successfully!');
-                } else {
-                    alert('There was an error submitting the frog information.');
-                }
-            });
+            alert("Namen korrekt eingegeben!");
+
+            
+
         };
 
     // Überprüfen, ob alle Eingaben korrekt sind
@@ -365,42 +352,6 @@
         // Hier könnte man weiterleiten oder die Seite neu laden
         window.location.reload();
     }
-
-
-    function submitFrogInfo() {
-            // Get values from the elements with the specified IDs
-            const firstName = document.getElementById('firstNameOutput').innerText;
-            const lastName = document.getElementById('lastNameOutput').innerText;
-            const frogName = document.getElementById('frogNameOutput').innerText;
-            const frogArms = document.getElementById('frogArms').value;
-
-            // Send the data to the Flask server using fetch
-            fetch('/submit_frog_info', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    first_name: firstName,
-                    last_name: lastName,
-                    frog_name: frogName,
-                    frog_arms: frogArms
-                })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    alert("Formular erfolgreich ausgefüllt!");
-
-                    // redirect to home
-                    window.location.href = "/";
-                } else {
-                    alert('There was an error submitting the frog information.');
-                }
-            });
-        }
-    
-
 
         /* POPUP STUFF */
         /***************/
